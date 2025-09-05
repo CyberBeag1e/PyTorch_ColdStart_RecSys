@@ -157,6 +157,23 @@ def main(max_hist_len: int = 20,
          use_img: bool = True, 
          device: Literal["cuda", "cpu"] = "cuda", 
          k: int = 50):
+
+    """
+    Args
+        max_hist_len: Length of historically interacted items of each user.
+        out_dim: Dimension of item embeddings.
+        use_items_id: Whether to include the item id embeddings as input to the item tower.
+        items_id_dim: If `use_item_id` is `True`, specify the dimension of item id embeddings.
+        batch_size: Batch_size of DataLoader.
+        n_epochs: Training epochs.
+        lr: Learning rate of the optimizer (default AdamW)
+        decay: Weight decay.
+        temperature: Temperature parameter during InfoNCE computation.
+        use_text: Whether to include textual embeddings as input to the item tower.
+        use_img: Whether to include poster embeddings as input to the item tower.
+        device: Default CUDA
+        k: k in top k.
+    """
     
     ## Force the model to run on GPU
     if not torch.cuda.is_available():
@@ -258,4 +275,5 @@ if __name__ == "__main__":
     parser.add_argument("--use_img", action = "store_true", default = True)
     
     args = parser.parse_args()
+
     main(**vars(args))
