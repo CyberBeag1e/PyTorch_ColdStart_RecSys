@@ -42,7 +42,7 @@ python -m src.scripts.baseline_mf_bpr
 
 ### Two Tower Model
 
-- Item Tower: encode textual features (text embeddings via SentenceBERT), posters (image embeddings via CLIP, optional) and item id (small item id embeddings, optional) as item embeddings
+- Item Tower: encode textual features (pre-computed text embeddings via SentenceBERT), posters (pre-computed image embeddings via CLIP, optional) and item id (small item id embeddings, optional) as item embeddings
 - User Tower: encode `L` historically interacted items (items embeddings) as user embeddings, with attention pooling (by default) or mean pooling.
 - Loss function: InfoNCE with in-batch loss - treat positive items of the other users as negatives to this user.
 
@@ -52,3 +52,6 @@ To run the two tower model, run the following pipeline, and refer to the file do
 ```bash
 python -m src.scripts.run_two_towers --use_text --use_img
 ```
+
+Note that by default we forced the computation of text embeddings, image embeddings, and training of MF-BPR and Two Tower models on CUDA.
+
