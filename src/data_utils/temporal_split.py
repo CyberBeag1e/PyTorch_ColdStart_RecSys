@@ -74,6 +74,17 @@ def main(cutoff_mode: Literal["quantile", "date"] = "quantile",
          val_share: float = 0.1, 
          interactions_threshold: int = 5, 
          print_info: bool = False):
+
+    """
+    Args
+        cutoff_mode: By quantile or date, default quantile.
+        cutoff_value: If cutoff by quantile, set this parameter to a float `q` within [0, 1], where `q` is the proportion of data
+            that will be treated as pre-cutoff data. If cutoff by date, set this parameter to a stringified datetime, where the 
+            interactions before this date will be treated as pre-cutoff data.
+        val_share: How much post-cutoff data are treated as validation data.
+        interactions_threshold: Users with number of records lower than this value will be dropped.
+        print_info: Whether to print a summary of the split, default `False`.
+    """
     
     os.makedirs(P.PROCESSED, exist_ok = True)
 
@@ -174,4 +185,5 @@ if __name__ == "__main__":
     parser.add_argument("--print_info", action = "store_true")
 
     args = parser.parse_args()
+
     main(**vars(args))
