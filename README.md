@@ -13,6 +13,8 @@ python -m src.data_utils.merge
 
 Note that before merging ML dataset with TMDB metadata, you need to get a TMDB API Key, create a `.env` file and set `TMDB_API_KEY = YOUR_KEY`.
 
+Also node that for path configuration, change directories and paths in `src.config.path_config.py`
+
 ### Cold Start Problem
 
 To simulate NEW items (cold start for new items instead of new users), specified a global cutoff point (either by selecting a quantile or a date) and do temporal split:
